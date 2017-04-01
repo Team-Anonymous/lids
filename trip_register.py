@@ -23,6 +23,5 @@ def trip_init():
 			resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/createTrip.php', data=data,headers=headers,timeout=10)
 			if resp.status_code==200:
 				getdata=json.loads(resp.content.decode('utf-8'))
-				print(getdata["tripid"])
 				comp=True
 	return cur_time,trip_id

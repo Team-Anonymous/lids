@@ -1,4 +1,4 @@
-#from gpsdata import *
+from gpsdata import *
 import requests
 import time
 import json
@@ -15,14 +15,14 @@ def trip_cont(start_time,flag,tripid):
 			userdata["tripid"]=tripid
 			userdata["uuid"]="107"
 			userdata["vehicleid"]="101"
-			userdata["TimestampMS"]=cur_time
-			userdata["Duration"]=cur_time-start_time
+			userdata["timestampMs"]=cur_time
+			userdata["duration"]=cur_time-start_time
 			userdata["latitudeE7"]=latitude
 			userdata["longitudeE7"]=longitude
-			userdata["isTripLive"]=flag;
+			userdata["istriplive"]=flag;
 			data=json.dumps(userdata)
 			headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-			resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/create.php', data=data,headers=headers,timeout=10)
+			resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/updateTrip.php', data=data,headers=headers,timeout=10)
 			if resp.status_code==200:
 				comp=True
 	if flag:
