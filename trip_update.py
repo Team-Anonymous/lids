@@ -7,14 +7,15 @@ def trip_cont(start_time,flag):
 	comp=False
 	while not comp:
 		location=loc()
-		cur_time=time.strftime("%x %X")
+		cur_time=int(time.time())
 		latitude=(location[0])
 		longitude=(location[1])
 		if latitude != "0.0" and longitude != "0.0":
 			userdata={}
 			userdata["uuid"]="107"
 			userdata["vehicleid"]="101"
-			userdata["TimestampMS"]=cur_time-start_time
+			userdata["TimestampMS"]=cur_time
+			userdata["Duration"]=cur_time-start_time
 			userdata["latitudeE7"]=latitude
 			userdata["longitudeE7"]=longitude
 			userdata["isTripLive"]=flag;
