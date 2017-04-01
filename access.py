@@ -1,8 +1,7 @@
 import os
 import RPi.GPIO as GPIO
-import peewee as pw
 from time import sleep
-from location import *
+from trip_api import *
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -24,7 +23,7 @@ while not comp:
         	cur=db.execute_sql("select * from admin_cards where id='%s'"%x[1])
         	z=list(cur.fetchall())
         	try:
-            		per=z[0][1]
+            	per=z[0][1]
         	except:
         		per=None
         	if per=="add":

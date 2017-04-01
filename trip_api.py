@@ -1,4 +1,4 @@
-from app import *
+from gpsdata import *
 import requests
 
 def send_loc():
