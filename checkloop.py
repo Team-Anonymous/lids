@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 from trip_register import *
 from trip_update import *
+import peewee as pw
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -10,8 +11,9 @@ GPIO.setup(23,GPIO.OUT)
 GPIO.setup(24,GPIO.OUT)
 GPIO.setup(17,GPIO.OUT)
 comp=False
+
 while not comp:
-	x=os.popen("node card2.js").read().split('\n')
+	x=os.popen("node card.js").read().split('\n')
 	if x[0] == "card removed":
 		GPIO.output(23,GPIO.HIGH)
 		GPIO.output(24,GPIO.LOW)
@@ -82,9 +84,10 @@ while not comp:
 				if(istrip):
 					init_time=trip_init()
 				else:
-					trip_cont(init_time)
+					trip_cont(init_time,True)
 					x=os.popen("node card2.js").read().split('\n')
 					continue
+				trip_cont(init_time,False)			
 		else:
 			print("Card not registered")
  #   except:
