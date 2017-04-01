@@ -10,10 +10,11 @@ def poll_count(vehicleid,duration):
         cf=duration*EFactor
         poll_data={}
         poll_data["cf"]=cf
-        poll_data["vehicleid"]=vehicleid
+        poll_data["licenseid"]=vehicleid
+        poll_data["start_date"]=time.strftime('%x')
         data=json.dumps(poll_data)
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-        resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/create.php', data=data,headers=headers,timeout=10)
+        resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/CFinsert.php', data=data,headers=headers,timeout=10)
         if resp.status_code==200:
             getdata=resp.json()
             trip_id=resp["tripid"]
