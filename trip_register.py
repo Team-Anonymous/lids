@@ -15,12 +15,12 @@ def trip_init():
 			userdata={}
 			userdata["uuid"]="107"
 			userdata["vehicleid"]="101"
-			userdata["TimestampMS"]=cur_time
+			userdata["timestampMs"]=cur_time
 			userdata["latitudeE7"]=latitude
 			userdata["longitudeE7"]=longitude
 			data=json.dumps(userdata)
 			headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-			resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/create.php', data=data,headers=headers,timeout=10)
+			resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/createTrip.php', data=data,headers=headers,timeout=10)
 			if resp.status_code==200:
 				getdata=resp.json()
 				trip_id=resp["tripid"]

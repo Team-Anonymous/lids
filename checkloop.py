@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 from trip_register import *
 from trip_update import *
+from CFstat import *
 import peewee as pw
 
 GPIO.setwarnings(False)
@@ -88,8 +89,8 @@ while not comp:
 					trip_cont(init_time,True)
 				x=os.popen("node card2.js").read().split('\n')
 				continue
-				trip_cont(init_time,False)
-
+				trip_time=trip_cont(init_time,False,trip_id)
+				poll_count(x[1],trip_time)
 		else:
 			print("Card not registered")
  #   except:
