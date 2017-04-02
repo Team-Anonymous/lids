@@ -1,5 +1,6 @@
 import os
 import RPi.GPIO as GPIO
+from theft_check import *
 from time import sleep
 from trip_register import *
 from trip_update import *
@@ -75,6 +76,7 @@ while not comp:
 					print("Card Deleted")
 		elif per=="access":
 			istrip=True;
+			theft=False;
 			init_time=0;
 			GPIO.output(23,GPIO.LOW)
 			GPIO.output(24,GPIO.HIGH)
@@ -88,11 +90,19 @@ while not comp:
 				else:
 					trip_cont(init_time,True)
 				x=os.popen("node card2.js").read().split('\n')
-				continue
 				trip_time=trip_cont(init_time,False,trip_id)
 				poll_count(x[1],trip_time)
+				theft=stop_command(vehicle_id)
+				if(theft):
+					break
 		else:
 			print("Card not registered")
  #   except:
 #	GPIO.cleanup()
 #	comp=True
+for(i in range(10)):
+	GPIO.output(23,GPIO.LOW)
+	GPIO.output(24,GPIO.HIGH)
+	sleep(2)
+	GPIO.output(23,GPIO.HIGH)
+	GPIO.output(24,GPIO.LOW)

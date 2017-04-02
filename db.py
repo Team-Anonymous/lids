@@ -2,6 +2,8 @@ import peewee as pw
 import os
 from time import sleep
 
+vehicle_id="101"
+
 db=pw.SqliteDatabase("admin")
 db.connect()
 db.execute_sql("""create table admin_cards(
