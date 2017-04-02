@@ -2,19 +2,21 @@ from gpsdata import *
 import requests
 import time
 import json
+from datetime import datetime
 
 def trip_cont(start_time,flag,tripid):
 	comp=False
 	while not comp:
 		location=loc()
-		cur_time=int(time.time())
+		dt=datetime.now()
+		cur_time=int(time.mktime(dt.timetuple()))
 		latitude=(location[0])
 		longitude=(location[1])
 		if latitude != "0.0" and longitude != "0.0":
 			userdata={}
 			userdata["tripid"]=tripid
-			userdata["uuid"]="107"
-			userdata["vehicleid"]="101"
+			userdata["uuid"]="109"
+			userdata["vehicleid"]="104"
 			userdata["timestampMs"]=cur_time
 			userdata["duration"]=cur_time-start_time
 			userdata["latitudeE7"]=latitude
