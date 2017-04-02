@@ -15,7 +15,7 @@ GPIO.setup(17,GPIO.OUT)
 comp=False
 
 while not comp:
-	x=os.popen("node card.js").read().split('\n')
+	x=os.popen("node card2.js").read().split('\n')
 	if x[0] == "card removed":
 		GPIO.output(23,GPIO.HIGH)
 		GPIO.output(24,GPIO.LOW)
