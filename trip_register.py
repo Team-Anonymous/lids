@@ -28,4 +28,3 @@ def trip_init():
 				trip_id=getdata["tripid"]
 				comp=True
 	return cur_time,trip_id
-trip_init()
