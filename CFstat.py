@@ -18,5 +18,3 @@ def poll_count(vehicleid,duration):
         resp = requests.post('http://lidsmysqldb.cloudapp.net/sih2017/lids-api/CFinsert.php', data=data,headers=headers,timeout=10)
         if resp.status_code==200:
             comp=True
-
-poll_count('1',100)

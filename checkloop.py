@@ -100,7 +100,7 @@ while not comp:
  #   except:
 #	GPIO.cleanup()
 #	comp=True
-for(i in range(10)):
+for i in range(10):
 	GPIO.output(23,GPIO.LOW)
 	GPIO.output(24,GPIO.HIGH)
 	sleep(2)
